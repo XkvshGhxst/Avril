@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Mother's Day 💐</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf6ee;
+      --blush: #e8c4b0;
+      --rose:  #c9726a;
+      --mauve: #8b5e6a;
+      --deep:  #3b2535;
+      --gold:  #c9a86c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--deep);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 100;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 3rem 2rem;
+      position: relative;
+      background: radial-gradient(ellipse 80% 70% at 50% 40%, #f5e0d3 0%, var(--cream) 70%);
+      overflow: hidden;
+    }
+
+    /* floating petals */
+    .petal {
+      position: absolute;
+      width: 18px; height: 24px;
+      border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+      opacity: 0;
+      animation: fall linear infinite;
+    }
+    .petal:nth-child(1)  { left:8%;  background:#e8c4b0; width:14px; height:20px; animation-duration:9s;  animation-delay:0s; }
+    .petal:nth-child(2)  { left:18%; background:#c9726a88; width:10px; height:16px; animation-duration:11s; animation-delay:1.5s; }
+    .petal:nth-child(3)  { left:32%; background:#e8c4b0cc; animation-duration:8s;  animation-delay:3s; }
+    .petal:nth-child(4)  { left:50%; background:#c9a86c55; width:12px; height:18px; animation-duration:13s; animation-delay:0.5s; }
+    .petal:nth-child(5)  { left:65%; background:#e8c4b0; animation-duration:10s; animation-delay:2s; }
+    .petal:nth-child(6)  { left:78%; background:#c9726a66; width:9px; height:14px; animation-duration:7s;  animation-delay:4s; }
+    .petal:nth-child(7)  { left:88%; background:#e8c4b0bb; width:16px; height:22px; animation-duration:12s; animation-delay:1s; }
+    .petal:nth-child(8)  { left:42%; background:#c9a86c44; animation-duration:9.5s; animation-delay:3.5s; }
+    .petal:nth-child(9)  { left:55%; background:#e8c4b099; width:11px; animation-duration:8.5s; animation-delay:2.5s; }
+    .petal:nth-child(10) { left:25%; background:#c9726a44; width:13px; height:19px; animation-duration:14s; animation-delay:0.8s; }
+
+    @keyframes fall {
+      0%   { transform: translateY(-60px) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.85; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(105vh) rotate(340deg); opacity: 0; }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      letter-spacing: 0.35em;
+      font-size: 0.7rem;
+      color: var(--rose);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(3.2rem, 10vw, 7rem);
+      line-height: 1.05;
+      color: var(--mauve);
+      margin-bottom: 0.4rem;
+      opacity: 0;
+      animation: fadeUp 1s 0.55s forwards;
+    }
+
+    .hero-title span {
+      color: var(--rose);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    .hero-divider {
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 300;
+      color: var(--deep);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      animation: fadeUp 1s 1s forwards;
+    }
+
+    .hero-sub {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      color: var(--mauve);
+      margin-top: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 1.2s forwards;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center;
+      gap: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1s 2s forwards;
+    }
+    .scroll-hint span { font-size: 0.65rem; letter-spacing: 0.3em; color: var(--blush); text-transform: uppercase; }
+    .scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--blush), transparent); animation: arrowPulse 2s infinite; }
+    @keyframes arrowPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── LETTER SECTION ── */
+    .letter-section {
+      max-width: 720px; margin: 0 auto;
+      padding: 6rem 2.5rem;
+      text-align: center;
+    }
+
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .letter-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      line-height: 1.95;
+      color: var(--deep);
+      font-weight: 300;
+    }
+
+    .letter-body em {
+      font-style: italic;
+      color: var(--mauve);
+    }
+
+    /* ── MEMORIES GRID ── */
+    .memories-section {
+      padding: 4rem 2rem 6rem;
+      background: linear-gradient(to bottom, var(--cream), #f5ede6);
+    }
+
+    .memories-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--mauve);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .memories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .memory-card {
+      background: #fff9f5;
+      border: 1px solid #e8d5ca;
+      border-radius: 4px;
+      padding: 2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .memory-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(139,94,106,0.1); }
+
+    .memory-card::before {
+      content: attr(data-number);
+      position: absolute; top: -0.5rem; right: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem; font-weight: 300;
+      color: #e8c4b030; line-height: 1;
+    }
+
+    .memory-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400; font-size: 1.15rem;
+      color: var(--rose); margin-bottom: 0.75rem;
+    }
+    .memory-card p { font-size: 0.88rem; line-height: 1.75; color: #7a5560; }
+
+    /* ── CLOSING ── */
+    .closing-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: var(--deep);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, #8b5e6a22 0%, transparent 70%);
+    }
+
+    .closing-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      color: var(--blush);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .closing-section p {
+      font-size: 0.8rem; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold);
+      position: relative;
+    }
+
+    .heart {
+      display: inline-block;
+      color: var(--rose);
+      font-size: 1.5rem;
+      animation: heartbeat 1.4s ease-in-out infinite;
+    }
+    @keyframes heartbeat {
+      0%,100%{transform:scale(1)} 14%{transform:scale(1.2)} 28%{transform:scale(1)} 42%{transform:scale(1.15)} 70%{transform:scale(1)}
+    }
+
+    footer {
+      background: var(--deep);
+      border-top: 1px solid #ffffff10;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: #ffffff30;
+    }
+
+    /* ── LOCK OVERLAY ── */
+    #lock-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: var(--deep);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      transition: opacity 1.2s ease, visibility 1.2s ease;
+    }
+    #lock-overlay.unlocked {
+      opacity: 0; visibility: hidden; pointer-events: none;
+    }
+
+    /* background shimmer */
+    #lock-overlay::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 40%, #8b5e6a28 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, #c9726a18 0%, transparent 60%);
+      animation: shimmer 6s ease-in-out infinite alternate;
+    }
+    @keyframes shimmer {
+      from { opacity: 0.6; } to { opacity: 1; }
+    }
+
+    .lock-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      animation: lockBob 3s ease-in-out infinite;
+      position: relative;
+    }
+    @keyframes lockBob {
+      0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)}
+    }
+
+    .lock-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 1.2rem; position: relative;
+    }
+
+    .lock-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-style: italic;
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      color: var(--blush);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+
+    .lock-subtitle {
+      font-size: 0.75rem; letter-spacing: 0.2em;
+      color: #ffffff40; margin-bottom: 3rem;
+      position: relative;
+    }
+
+    /* countdown digits */
+    .countdown {
+      display: flex; gap: 1rem; align-items: flex-start;
+      justify-content: center; flex-wrap: wrap;
+      position: relative;
+    }
+
+    .cd-unit {
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    }
+
+    .cd-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      line-height: 1;
+      color: var(--cream);
+      min-width: 2ch; text-align: center;
+      transition: transform 0.15s ease;
+    }
+    .cd-num.tick { transform: scale(1.08); }
+
+    .cd-label {
+      font-size: 0.55rem; letter-spacing: 0.35em;
+      text-transform: uppercase; color: var(--mauve);
+    }
+
+    .cd-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      color: var(--mauve); line-height: 1;
+      padding-top: 0.1em;
+      animation: sepPulse 1s step-start infinite;
+    }
+    @keyframes sepPulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .lock-unlock-msg {
+      margin-top: 2.5rem;
+      font-size: 0.7rem; letter-spacing: 0.25em;
+      color: #ffffff25; text-transform: uppercase;
+      position: relative;
+    }
+
+    /* burst animation when unlocked */
+    @keyframes burstOut {
+      0%   { transform: scale(1); opacity: 1; }
+      60%  { transform: scale(1.04); opacity: 0.5; }
+      100% { transform: scale(1.08); opacity: 0; }
+    }
+    #lock-overlay.unlocking {
+      animation: burstOut 1.2s forwards ease-in;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- floating petals -->
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div><div class="petal"></div><div class="petal"></div>
+    <div class="petal"></div>
+
+    <p class="hero-eyebrow">A gift from the heart</p>
+
+    <h1 class="hero-title">
+      Happy<br/><span>Mother's Day</span>
+    </h1>
+
+    <div class="hero-divider"></div>
+
+    <!-- ✏️ EDIT: Change "Mom" to her name, and your name below -->
+    <p class="hero-name">To the most wonderful Avril</p>
+    <p class="hero-sub">with all my love — Zai</p>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section class="letter-section">
+    <p class="section-label">✦ &nbsp; A letter for you &nbsp; ✦</p>
+
+    <!-- ✏️ EDIT: Replace this letter with your own words -->
+    <div class="letter-body">
+      <p>
+        Dear Mom,<br/><br/>
+        There are not enough words in any language to describe what you mean to me.
+        You have been my <em>safe place</em>, my loudest cheerleader, and my most
+        trusted guide through every obstacle of my life.<br/><br/>
+        From the small everyday moments — the early mornings, the home-cooked meals, life lesssons,
+        the gentle advice — to the big ones I will never forget, no matter how stern you can be, i know it comes from love you have poured
+        yourself into making my world beautiful.<br/><br/>
+        Today I want you to know: <em>I see you. I love you. I am so grateful
+       for everything you do.</em><br/><br/>
+        Happy Mother's Day.
+      </p>
+    </div>
+  </section>
+
+  <!-- MEMORIES -->
+  <section class="memories-section">
+    <h2>Things I love about you</h2>
+
+    <!-- ✏️ EDIT: Replace these cards with your own memories & reasons -->
+    <div class="memories-grid">
+      <div class="memory-card" data-number="01">
+        <h3>Your laugh</h3>
+        <p>It fills every room and makes any moment instantly warmer. I could pick it out of a crowd anywhere.</p>
+      </div>
+      <div class="memory-card" data-number="02">
+        <h3>Your cooking</h3>
+        <p>No restaurant in the world has ever come close. Every meal is made with patience, care, and love.</p>
+      </div>
+      <div class="memory-card" data-number="03">
+        <h3>Your advice</h3>
+        <p>You always seem to know exactly what to say, even when the right words are hard to find.</p>
+      </div>
+      <div class="memory-card" data-number="04">
+        <h3>Your strength</h3>
+        <p>You have faced challenges with grace and kept going — showing me every day what it means to be resilient.</p>
+      </div>
+      <div class="memory-card" data-number="05">
+        <h3>Your Sacrifice</h3>
+        <p>You absouately make sure to provide even if you make not me 100%.</p>
+      </div>
+      <div class="memory-card" data-number="06">
+        <h3>Unconditional love</h3>
+        <p>No matter where life has taken me, I have always known your love is constant. That is everything.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing-section">
+    <h2>I love you<br/>to the moon &amp; back</h2>
+    <p><span class="heart">♥</span> &nbsp; Always and forever &nbsp; <span class="heart">♥</span></p>
+  </section>
+
+  <footer>Made with love · Mother's Day 2026</footer>
+
+  <!-- ── LOCK OVERLAY ── -->
+  <div id="lock-overlay">
+    <div class="lock-icon">🌸</div>
+    <p class="lock-eyebrow">Something special is waiting</p>
+    <h2 class="lock-title">A gift<br/>just for you</h2>
+    <p class="lock-subtitle">Opens on Mother's Day morning at 8:00 AM</p>
+
+    <div class="countdown">
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-h">00</span>
+        <span class="cd-label">Hours</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-m">00</span>
+        <span class="cd-label">Minutes</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-s">00</span>
+        <span class="cd-label">Seconds</span>
+      </div>
+    </div>
+
+    <p class="lock-unlock-msg">Come back tomorrow morning ✦</p>
+  </div>
+
+  <script>
+    // Unlock target: May 10 2026, 8:00 AM in the viewer's local time
+    const UNLOCK = new Date(2026, 4, 10, 8, 0, 0);
+
+    const overlay = document.getElementById('lock-overlay');
+    const elH = document.getElementById('cd-h');
+    const elM = document.getElementById('cd-m');
+    const elS = document.getElementById('cd-s');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function tick(el, val) {
+      const str = pad(val);
+      if (el.textContent !== str) {
+        el.textContent = str;
+        el.classList.remove('tick');
+        void el.offsetWidth;
+        el.classList.add('tick');
+        setTimeout(() => el.classList.remove('tick'), 150);
+      }
+    }
+
+    function update() {
+      const diff = UNLOCK - new Date();
+      if (diff <= 0) {
+        overlay.classList.add('unlocking');
+        setTimeout(() => overlay.classList.add('unlocked'), 1200);
+        return;
+      }
+      const totalSec = Math.floor(diff / 1000);
+      tick(elH, Math.floor(totalSec / 3600));
+      tick(elM, Math.floor((totalSec % 3600) / 60));
+      tick(elS, totalSec % 60);
+    }
+
+    update();
+    setInterval(update, 1000);
+  </script>
+
+</body>
+</html>
